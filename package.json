@@ -1,0 +1,39 @@
+{
+  "name": "node-api-prototyping",
+  "version": "0.0.1",
+  "description": "Collection of experimental API functions",
+  "main": "app.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "start:debug": "nodemon --inspect=0.0.0.0:6969 ./src/index.js",
+    "lint": "eslint .",
+    "lint-fix": "eslint . --fix",
+    "test": "jest --config ./src/__tests__/config.js",
+    "test:unit": "jest --config ./src/__tests__/config.unit.js",
+    "test:watch": "jest --config ./src/__tests__/config.unit.js --collectCoverage=false --watchAll --verbose"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:daelin9000/node-api-prototyping.git"
+  },
+  "author": "daelin9000",
+  "license": "MIT",
+  "dependencies": {
+    "awilix": "latest",
+    "dotenv": "latest",
+    "fastify": "latest",
+    "fastify-awilix": "latest",
+    "fastify-swagger": "latest",
+    "structure": "latest"
+  },
+  "devDependencies": {
+    "eslint": "latest",
+    "eslint-config-prettier": "latest",
+    "eslint-plugin-prettier": "latest",
+    "jest": "latest",
+    "nodemon": "latest",
+    "prettier": "latest",
+    "prettier-eslint": "latest",
+    "benny": "latest"
+  }
+}
