@@ -1,20 +1,25 @@
-const { diContainer } = require('fastify-awilix');
+const { diContainer } = require('@fastify/awilix');
 const { asClass, asValue, asFunction, Lifetime } = require('awilix');
+const { v4: uuidv4 } = require('uuid');
 
 const App = require('./app');
 const WebFramework = require('./web-framework');
 const router = require('./web-framework/router');
-const config = require('../config/index');
+const config = require('../../config/index');
+const utilities = { uuidv4 };
 
-const PeopleHttpAdapter = require('./people/interfaces/PeopleHttpAdapter');
-const PersonSerializer = require('./people/interfaces/PersonSerializer');
-const { BrowsePeople/* , ReadUser, EditUser, AddUser, DeleteUser */ } = require('./people/use-cases');
+const { sequelize: database, User: UserModel } = require('../_db');
 
-const { Person: PersonModel } = require('../_db/models');
-const PeopleDatabaseRepository = require('./people/persistence/PeopleDatabaseRepository');
+const UsersDatabaseRepository = require('../users/data/repository');
+
+const UsersRouter = require('../users/interfaces/router');
+const UserSerializer = require('../users/interfaces/serializer');
+
+const { BrowseUsers, ReadUser, EditUser, AddUser, DeleteUser } = require('../users/actions');
 
 diContainer.register({
   config: asValue(config),
+  database: asValue(database),
   App: asClass(App, {
     lifetime: Lifetime.SINGLETON,
   }),
@@ -24,15 +29,15 @@ diContainer.register({
   router: asFunction(router, {
     lifetime: Lifetime.SINGLETON,
   }),
-  /* UsersHttpAdapter: asClass(UsersHttpAdapter, {
+  UsersRouter: asClass(UsersRouter, {
     lifetime: Lifetime.SINGLETON,
   }),
   UserSerializer: asValue(UserSerializer),
   UserModel: asValue(UserModel),
   UsersDatabaseRepository: asClass(UsersDatabaseRepository, {
     lifetime: Lifetime.SINGLETON,
-  }), */
-  /* utilities: asValue(utilities, {
+  }),
+  utilities: asValue(utilities, {
     lifetime: Lifetime.SINGLETON,
   }),
   BrowseUsers: asClass(BrowseUsers, {
@@ -49,7 +54,7 @@ diContainer.register({
   }),
   DeleteUser: asClass(DeleteUser, {
     lifetime: Lifetime.SCOPED,
-  }), */
+  }),
 });
 
 module.exports = diContainer;

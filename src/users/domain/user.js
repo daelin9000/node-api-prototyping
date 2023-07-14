@@ -10,19 +10,19 @@ const User = attributes({
   },
   firstName: {
     type: String,
-    required: true,
+    required: false,
     minLength: 1,
     maxLength: 255,
   },
   lastName: {
     type: String,
-    required: true,
+    required: false,
     minLength: 1,
     maxLength: 255,
   },
   email: {
     type: String,
-    required: true,
+    required: false,
     email: true,
   },
   deleted: {
@@ -33,6 +33,7 @@ const User = attributes({
   createdAt: {
     type: Date,
     nullable: true,
+    default: Date.now(),
   },
   updatedAt: {
     type: Date,

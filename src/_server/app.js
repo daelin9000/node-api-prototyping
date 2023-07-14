@@ -7,6 +7,7 @@ class App {
   async start() {
     if (this.database) {
       await this.database.authenticate();
+      await this.database.initTables();
     }
 
     await this.WebFramework.start();

@@ -20,11 +20,14 @@
   "license": "MIT",
   "dependencies": {
     "awilix": "latest",
+    "sqlite3": "latest",
     "dotenv": "latest",
     "fastify": "latest",
-    "fastify-awilix": "latest",
-    "fastify-swagger": "latest",
-    "structure": "latest"
+    "@fastify/awilix": "latest",
+    "@fastify/swagger": "latest",
+    "sequelize": "latest",
+    "structure": "latest",
+    "uuid": "latest"
   },
   "devDependencies": {
     "eslint": "latest",
@@ -34,6 +37,7 @@
     "nodemon": "latest",
     "prettier": "latest",
     "prettier-eslint": "latest",
-    "benny": "latest"
+    "benny": "latest",
+    "sequelize-cli": "latest"
   }
 }

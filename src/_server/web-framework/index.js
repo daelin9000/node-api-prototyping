@@ -1,6 +1,6 @@
-const { fastifyAwilixPlugin } = require('fastify-awilix');
+const { fastifyAwilixPlugin } = require('@fastify/awilix');
 const fastify = require('fastify');
-const openApiGenerator = require('fastify-swagger');
+const openApiGenerator = require('@fastify/swagger');
 
 class WebFramework {
   constructor({ config, router }) {
@@ -65,7 +65,7 @@ class WebFramework {
         }
       });
 
-      await this.server.listen(this.config.web.port, this.config.web.listenAddress);
+      await this.server.listen({ port: this.config.web.port, host: this.config.web.host });
     } catch (err) {
       this.server.log.error(err);
       process.exit(1);

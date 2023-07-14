@@ -1,6 +1,6 @@
-module.exports = ({ UsersHttpAdapter }) => {
+module.exports = ({ UsersRouter }) => {
     return (app, opts, done) => {
-      app.register(UsersHttpAdapter.router);
+      app.register(UsersRouter.router);
       done();
     };
   };
